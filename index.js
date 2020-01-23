@@ -34,7 +34,7 @@ function getInlineStyle(header) {
   case "code":
     return "font-family: monospace";
   }
-  
+
   return "";
 }
 // line, apool,attribLine,text
@@ -66,21 +66,25 @@ exports.padInitToolbar = function (hook_name, args) {
 
     var alignLeftButton = toolbar.button({
         command: 'alignLeft',
+        localizationId: 'ep_align.toolbar.left.title',
         class: "buttonicon grouped-left ep_align ep_align_left"
     });
 
     var alignCenterButton = toolbar.button({
         command: 'alignCenter',
+        localizationId: 'ep_align.toolbar.middle.title',
         class: "buttonicon grouped-middle ep_align ep_align_center"
     });
 
     var alignJustifyButton = toolbar.button({
         command: 'alignJustify',
+        localizationId: 'ep_align.toolbar.justify.title',
         class: "buttonicon grouped-middle ep_align ep_align_justify"
     });
 
     var alignRightButton = toolbar.button({
         command: 'alignRight',
+        localizationId: 'ep_align.toolbar.right.title',
         class: "buttonicon grouped-right ep_align ep_align_right"
     });
 
