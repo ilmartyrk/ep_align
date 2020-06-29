@@ -95,7 +95,7 @@ exports.aceDomLineProcessLineAttributes = function(name, context){
 };
 
 // Find out which lines are selected and assign them the align attribute.
-// Passing a level >= 0 will set a alignment on the selected lines, level < 0 
+// Passing a level >= 0 will set a alignment on the selected lines, level < 0
 // will remove it
 function doInsertAlign(level){
   var rep = this.rep,
@@ -124,5 +124,30 @@ exports.aceInitialized = function(hook, context){
   var editorInfo = context.editorInfo;
   editorInfo.ace_doInsertAlign = _(doInsertAlign).bind(context);
 }
+exports.postToolbarInit = function (hook_name, context) {
+    var editbar = context.toolbar; // toolbar is actually editbar - http://etherpad.org/doc/v1.5.7/#index_editbar
 
+    editbar.registerCommand('alignLeft', function () {
+      align(context, 0);
+    });
+
+    editbar.registerCommand('alignCenter',  function () {
+       align(context, 1);
+    });
+
+    editbar.registerCommand('alignJustify',  function () {
+      align(context, 2);
+    });
+
+    editbar.registerCommand('alignRight',  function () {
+      align(context, 3);
+    });
+};
+
+function align(context, alignment){
+  context.ace.callWithAce(function(ace){
+    ace.ace_doInsertAlign(alignment);
+    ace.ace_focus();
+  },'insertalign' , true);
+}
 
